@@ -17,7 +17,7 @@
 
 ## Демо
 
-Открыть онлайн: **https://ВАШ_НИК.github.io/photo-cropper/**
+Открыть онлайн: **https://danil10525.github.io/photo-cropper/**
 
 ## Использование
 
@@ -26,6 +26,6 @@
 Скачайте репозиторий и откройте `index.html` в браузере.
 
 ```bash
-git clone https://github.com/ВАШ_НИК/photo-cropper.git
+git clone https://github.com/danil10525/photo-cropper.git
 cd photo-cropper
 # откройте index.html двойным кликом
