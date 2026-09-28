@@ -1,0 +1,222 @@
+/* ---------- Базовое ---------- */
+* { box-sizing: border-box; }
+
+:root {
+  --bg: #f3f4f6;
+  --card: #ffffff;
+  --border: #e5e7eb;
+  --text: #111827;
+  --muted: #6b7280;
+  --primary: #2563eb;
+  --primary-hover: #1d4ed8;
+  --success: #16a34a;
+  --success-hover: #15803d;
+  --secondary: #ffffff;
+  --secondary-hover: #f3f4f6;
+}
+
+body {
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+header { margin-bottom: 24px; }
+h1 { font-size: 1.75rem; margin: 0 0 4px; }
+h2 { font-size: 1.1rem; margin: 0 0 12px; }
+.subtitle { color: var(--muted); margin: 0; }
+
+footer {
+  margin-top: 32px;
+  text-align: center;
+  font-size: .85rem;
+  color: var(--muted);
+}
+footer a { color: var(--primary); }
+
+/* ---------- Карточки ---------- */
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 18px;
+  margin-bottom: 16px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 18px 0;
+}
+
+/* ---------- Формы ---------- */
+.row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+.field { display: flex; flex-direction: column; gap: 4px; }
+.field label {
+  font-size: .85rem;
+  color: #374151;
+  font-weight: 600;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  padding: 8px 10px;
+  font-size: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: #fff;
+  min-width: 130px;
+  font-family: inherit;
+}
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 1px;
+  border-color: var(--primary);
+}
+input[type="range"] { width: 180px; }
+
+.qualityValue {
+  font-variant-numeric: tabular-nums;
+  color: var(--text);
+  font-weight: 600;
+}
+.field.hidden { display: none; }
+
+/* ---------- Кнопки ---------- */
+.btn,
+button.btn,
+label.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-family: inherit;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background .15s ease;
+  user-select: none;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #fff;
+}
+.btn-primary:hover { background: var(--primary-hover); }
+.btn-primary:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: var(--secondary);
+  color: var(--text);
+  border: 1px solid #d1d5db;
+}
+.btn-secondary:hover { background: var(--secondary-hover); }
+
+.btn-success {
+  background: var(--success);
+  color: #fff;
+}
+.btn-success:hover { background: var(--success-hover); }
+
+/* ---------- Пресеты ---------- */
+.presets {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+.presets button {
+  padding: 6px 12px;
+  font-size: .85rem;
+  background: #e5e7eb;
+  color: var(--text);
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: inherit;
+}
+.presets button:hover { background: #d1d5db; }
+
+/* ---------- Рабочая область ---------- */
+#dropZone {
+  border: 2px dashed #cbd5e1;
+  border-radius: 10px;
+  padding: 22px;
+  text-align: center;
+  color: var(--muted);
+  background: #fafafa;
+  margin-bottom: 12px;
+  transition: all .15s ease;
+}
+body.dragover { background: #e0ecff; }
+body.dragover #dropZone {
+  border-color: var(--primary);
+  color: var(--primary);
+  background: #eff6ff;
+}
+
+#imageContainer {
+  max-height: 70vh;
+  overflow: hidden;
+  background: #111;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+#image { max-width: 100%; display: block; }
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.hint {
+  font-size: .85rem;
+  color: var(--muted);
+  margin-top: 8px;
+}
+
+kbd {
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-size: .8em;
+  font-family: ui-monospace, monospace;
+}
+
+code {
+  background: #f3f4f6;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: .9em;
+  font-family: ui-monospace, monospace;
+}
+
+/* ---------- Адаптив ---------- */
+@media (max-width: 600px) {
+  h1 { font-size: 1.35rem; }
+  .row { flex-direction: column; align-items: stretch; }
+  .field label { display: block; }
+  .btn, button.btn, label.btn { width: 100%; justify-content: center; }
+  input[type="text"], input[type="number"], select { width: 100%; }
+}
