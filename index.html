@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photo Cropper — обрезка фото для сайта</title>
+  <meta name="description" content="Простое веб-приложение для обрезки изображений: соотношение сторон, качество, форматы JPEG/PNG/WebP. Всё работает локально в браузере.">
+
+  <!-- Cropper.js -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>✂️ Photo Cropper</h1>
+    <p class="subtitle">Обрезка фото для сайта — прямо в браузере, без загрузки на сервер</p>
+  </header>
+
+  <main>
+    <!-- 1. Загрузка -->
+    <section class="card">
+      <h2>1. Изображение</h2>
+
+      <div id="dropZone">
+        Перетащите файл сюда, вставьте из буфера (<kbd>Ctrl</kbd>+<kbd>V</kbd>)
+        или используйте кнопки ниже.
+      </div>
+
+      <div class="buttons">
+        <label for="fileInput" class="btn btn-primary">📁 Выбрать файл</label>
+        <input type="file" id="fileInput" accept="image/*" hidden>
+        <button type="button" id="pasteBtn" class="btn btn-secondary">📋 Вставить из буфера</button>
+      </div>
+
+      <p class="hint">Файл не отправляется на сервер — всё работает локально.</p>
+    </section>
+
+    <!-- 2. Обрезка -->
+    <section class="card">
+      <h2>2. Параметры обрезки</h2>
+
+      <div class="row">
+        <div class="field">
+          <label for="ratioInput">Соотношение сторон</label>
+          <input type="text" id="ratioInput" placeholder="например 16:9">
+        </div>
+        <div class="field">
+          <label>&nbsp;</label>
+          <button type="button" id="applyRatio" class="btn btn-primary">Применить</button>
+        </div>
+        <div class="field">
+          <label>&nbsp;</label>
+          <button type="button" id="freeRatio" class="btn btn-secondary">Свободно</button>
+        </div>
+      </div>
+
+      <div class="presets">
+        <button data-ratio="1:1">1:1</button>
+        <button data-ratio="4:3">4:3</button>
+        <button data-ratio="3:2">3:2</button>
+        <button data-ratio="16:9">16:9</button>
+        <button data-ratio="9:16">9:16 (сторис)</button>
+        <button data-ratio="3:4">3:4</button>
+        <button data-ratio="1200:630">1200:630 (OG)</button>
+      </div>
+      <p class="hint">Форматы: <code>16:9</code>, <code>1.5</code> или <code>3/2</code>. <kbd>Enter</kbd> — применить.</p>
+
+      <hr>
+
+      <h2>3. Параметры сохранения</h2>
+
+      <div class="row">
+        <div class="field">
+          <label for="formatSelect">Формат</label>
+          <select id="formatSelect">
+            <option value="image/jpeg" selected>JPEG (.jpg)</option>
+            <option value="image/png">PNG (.png)</option>
+            <option value="image/webp">WebP (.webp)</option>
+          </select>
+        </div>
+
+        <div class="field" id="qualityField">
+          <label for="qualityRange">
+            Качество: <span class="qualityValue" id="qualityValue">95%</span>
+          </label>
+          <input type="range" id="qualityRange" min="10" max="100" value="95" step="1">
+        </div>
+
+        <div class="field">
+          <label for="maxWidthInput">Макс. ширина, px (0 — без лимита)</label>
+          <input type="number" id="maxWidthInput" value="4096" min="0" step="1">
+        </div>
+      </div>
+      <p class="hint">Качество влияет только на JPEG и WebP. PNG сохраняется без потерь.</p>
+    </section>
+
+    <!-- 3. Рабочая область -->
+    <section class="card">
+      <h2>4. Выделите область и обрежьте</h2>
+
+      <div id="imageContainer">
+        <img id="image" alt="Изображение для обрезки">
+      </div>
+
+      <div class="buttons">
+        <button id="cropBtn" class="btn btn-primary" disabled>✂️ Обрезать</button>
+
+        <div class="field" id="filenameField" hidden>
+          <label for="filenameInput">Имя файла (без расширения)</label>
+          <input type="text" id="filenameInput" value="crop">
+        </div>
+
+        <a id="downloadLink" class="btn btn-success" download="crop.jpg" hidden>💾 Сохранить</a>
+      </div>
+
+      <p class="hint" id="sizeHint" hidden></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>Сделано с ❤️ для веб-разработчиков. <a href="https://github.com/ВАШ_НИК/photo-cropper">GitHub</a></p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
